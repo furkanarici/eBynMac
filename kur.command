@@ -22,6 +22,9 @@ curl -O https://ebeyanname.gib.gov.tr/ebyn_pardus.tar.gz
 
 mkdir ~/Desktop/eBeyanname/Guncelleme/download/ebyn_pardus
 cd ~/Desktop/eBeyanname/Guncelleme/download/ebyn_pardus
+
+sudo cp -R ~/Desktop/eBeyanname/Guncelleme/download/ebyn_pardus.tar.gz ~/Desktop/eBeyanname/Guncelleme/download/ebyn_pardus
+
 tar -xzf ebyn_pardus.tar.gz
 
 sudo cp -R ~/Desktop/eBeyanname/Guncelleme/download/ebyn_pardus/* /opt/ebyn;
@@ -30,7 +33,6 @@ sudo cp -R ~/Desktop/eBeyanname/Guncelleme/bdp_bg.jpg /opt/ebyn;
 
 cd ~/Desktop/eBeyanname/Guncelleme/download
 
-~/Desktop/eBeyanname/Guncelleme/download/ebyn
 curl -O https://download.oracle.com/java/17/latest/jdk-17_macos-aarch64_bin.dmg
 curl -O https://download.oracle.com/java/17/latest/jdk-17_macos-x64_bin.dmg
 curl -O https://kamusm.bilgem.tubitak.gov.tr/islemler/surucu_yukleme_servisi/suruculer/AkisKart/macos/Akia_macos_1_8_0.zip
