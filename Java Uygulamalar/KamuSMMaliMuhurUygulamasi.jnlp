@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<jnlp spec="6.0+" codebase="https://onlineislemler.kamusm.gov.tr" href="/download/KamuSMMaliMuhurUygulamasi.jnlp">
+  <information>
+    <title>Kamu SM Mali Muhur Uygulamasi</title>
+    <vendor>Kamu Sertifikasyon Merkezi</vendor>
+    <homepage href="https://onlineislemler.kamusm.gov.tr"/>
+    <description></description>
+    <icon kind="shortcut" href="/download/KamuSM_MaliMuhur.ico" width="64" height="64"/>
+	<icon kind="splash" href="/download/logo.png" />
+	<shortcut online="true">
+		<desktop/>
+	</shortcut>
+	<offline-allowed/>
+  </information>
+  
+  <security>
+      <all-permissions/>
+  </security>
+
+  <resources>
+    <j2se version="1.7.0_0+" href="" initial-heap-size="256m" java-vm-args="-XX:+UserParNewGC -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 -XX:+DisableExplicitGC"/>
+    <jar href="/download/KamuSMMaliMuhurUygulamasi.jar"/>
+  </resources>
+  
+  <application-desc main-class="tr.gov.kamusm.financialseal.KamusmFinancialSeal"/>
+
+  <update check="background"/>
+</jnlp>

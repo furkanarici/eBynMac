@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="0.2 1.0" codebase="https://ebelge.gib.gov.tr/EFaturaWebSocket/" href="EFaturaWebSocket.jnlp">
+   <information>
+      <title>EFatura Web Socket</title>
+      <vendor>GELİR İDARESİ BAŞKANLIĞI</vendor>
+      <homepage href="/EFaturaWebSocket/"/>
+      <description>EFatura Web Socket</description>
+   </information>
+   <security>
+     <all-permissions/>
+   </security>
+   <resources>
+		<j2se version="1.7+" initial-heap-size="128m" max-heap-size="512m"/>
+		<jar href="EfaturaWebSocket.jar"/>
+		<jar href="lib/asn1rt-6.42.jar"/>
+		<jar href="lib/bcmail-jdk15-146.jar"/>
+		<jar href="lib/bcprov-eksikler.jar"/>
+		<jar href="lib/bcprov-jdk15on-147.jar"/>
+		<jar href="lib/bctsp-jdk15-146.jar"/>
+		<jar href="lib/CSSigner.jar"/>
+		<jar href="lib/IAIKPKCS11Wrapper.jar"/>
+		<jar href="lib/itext-hyph-xml.jar"/>
+		<jar href="lib/itext-pdfa-5.3.3.jar"/>
+		<jar href="lib/itext-xtra-5.3.3.jar"/>
+		<jar href="lib/itextpdf-5.3.3.jar"/>
+		<jar href="lib/jetty-all-9.0.4.v20130625.jar"/>
+		<jar href="lib/pades.jar"/>
+		<jar href="lib/servlet-api-3.1.jar"/>
+   </resources>
+   <application-desc main-class="tr.com.cs.imz.websocket.ImzWebSocketMain">e-Fatura Web Socket</application-desc>
+</jnlp>
