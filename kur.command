@@ -21,7 +21,7 @@ cd ~/Desktop/eBeyanname/Guncelleme/download
 curl -O https://ebeyanname.gib.gov.tr/ebyn_pardus.tar.gz
 
 mkdir ~/Desktop/eBeyanname/Guncelleme/download/ebyn_pardus
-cd ~/Desktop/eBeyanname/Guncelleme/download/ebyn
+cd ~/Desktop/eBeyanname/Guncelleme/download/ebyn_pardus
 tar -xzf ebyn_pardus.tar.gz
 
 sudo cp -R ~/Desktop/eBeyanname/Guncelleme/download/ebyn_pardus/* /opt/ebyn;
