@@ -19,13 +19,18 @@ sudo ln -s ~/Downloads/eBynMac-main/files/libakisp11.dylib /Library/Java/Extensi
 
 cd ~/Desktop/eBeyanname/Guncelleme/download
 curl -O https://ebeyanname.gib.gov.tr/ebyn_pardus.tar.gz
-unzip ebyn_pardus.tar.gz
+
+mkdir ~/Desktop/eBeyanname/Guncelleme/download/ebyn_pardus
+cd ~/Desktop/eBeyanname/Guncelleme/download/ebyn
+tar -xzf ebyn_pardus.tar.gz
 
 sudo cp -R ~/Desktop/eBeyanname/Guncelleme/download/ebyn_pardus/* /opt/ebyn;
 sudo cp -R ~/Desktop/eBeyanname/Guncelleme/bdp.sh /opt/ebyn;
 sudo cp -R ~/Desktop/eBeyanname/Guncelleme/bdp_bg.jpg /opt/ebyn;
 
+cd ~/Desktop/eBeyanname/Guncelleme/download
 
+~/Desktop/eBeyanname/Guncelleme/download/ebyn
 curl -O https://download.oracle.com/java/17/latest/jdk-17_macos-aarch64_bin.dmg
 curl -O https://download.oracle.com/java/17/latest/jdk-17_macos-x64_bin.dmg
 curl -O https://kamusm.bilgem.tubitak.gov.tr/islemler/surucu_yukleme_servisi/suruculer/AkisKart/macos/Akia_macos_1_8_0.zip
@@ -35,6 +40,8 @@ unzip Akia_macos_1_8_0.zip
 open akia_macos_1_8_0.dmg
 open jdk-17_macos-x64_bin.dmg
 open jdk-17_macos-aarch64_bin.dmg
+
+
 
 open https://drive.google.com/file/d/1wPutXX40gJJevRRwnOuL2blzJt9e0dRx/view?usp=sharing
 open ~/Desktop/eBeyanname
