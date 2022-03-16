@@ -20,12 +20,6 @@ Kurulum Adımları
 <img src="assets/4.png" width="250">
 - İnternetten gerekli programları indirecek ve yükleme programlarını açacak.
 - Açılan Java yükleme programlarını teker teker çalıştırın kurulumların tamamlanmasını bekleyin.
-- Tarayıcınız açılacak gelen Google Drive penceresinde indir e tıklayın.
-<img src="assets/5.png" width="250">
-- Aşağıdaki ekranı görünce yine de indir butonunu tıklayın.
-<img src="assets/6.png" width="250">
-- indirime bittikten sonra aşağıda gelen iki dmg dosyasını da sıra ile açarak kurulumun tamamlanmasını sağlayın.
-<img src="assets/7.png" width="250">
 - İşlemler bittiğinde aşadğaki gibi masa üstünüzde eBeyanname adında bir klasör oluşacak
 <img src="assets/8.png" width="250">
 - Kalsör içindeki hiçbir şeyi silmeyin. e-Beyanname programına girmek için bdp.command dosyasını çalıştırın. Güvenlik nedeniyle açılmadığı mesajı alırsanız 3. ve 4. adımda olduğu gibi güvenlik ve gizlilik ekranında yine de aç diyerek ilerleyin.
@@ -33,7 +27,7 @@ Kurulum Adımları
 
 ### Güncelleme
 - e beyanname yazılımının güncellenmesi gerektiği zaman yine massa üstündeki eBeyanname klasörünü açın. bdpGuncelleme.command dosyasını çalıştırn. 
-- Açılan pencerede alttaki örnekte oldğu gibi soru sordulduğunda "y" tuşuna basıp "enter" a basın. Bu işlemi birkaç kez isteyebilir. 
+- Açılan pencerede alttaki örnekte oldğu gibi soru sorulursa "y" tuşuna basıp "enter" a basın. Bu işlemi birkaç kez isteyebilir. 
 <img src="assets/10.png" width="250">
 
 kolay gelsin. 
