@@ -6,19 +6,15 @@ sudo mkdir /opt/ebyn/download
 sudo mkdir /opt/ebyn/update
 sudo chown -R $(whoami) /opt/ebyn
 
-cd /opt/ebyn/download
-curl -L "https://drive.google.com/u/0/uc?id=1k9Qjp2WWyDhwqrpjgxxn8woAsZCaA0d9&export=download&confirm=t" > bdp.zip
-unzip bdp.zip
+sudo cp -R ~/Downloads/eBynMac-main/assets/files/bdp.command ~/Desktop/eBeyanname
+sudo cp -R ~/Downloads/eBynMac-main/assets/files/paketler.command ~/Desktop/eBeyanname
+sudo cp -R ~/Downloads/eBynMac-main/assets/files/bdp.sh /opt/ebyn/update
 
-sudo cp -R /opt/ebyn/download/bdp.command ~/Desktop/eBeyanname
-sudo cp -R /opt/ebyn/download/paketler.command ~/Desktop/eBeyanname
-sudo cp -R /opt/ebyn/download/bdp.sh /opt/ebyn/update
+sudo cp -R ~/Downloads/eBynMac-main/assets/files/EFaturaWebSocket.jnlp ~/Desktop/eBeyanname
+sudo cp -R ~/Downloads/eBynMac-main/assets/files/KamuSMMaliMuhurUygulamasi.jnlp ~/Desktop/eBeyanname
+sudo ln -fs ~/Downloads/eBynMac-main/assets/files/libakisp11.dylib /Library/Java/Extensions;
 
-sudo cp -R /opt/ebyn/download/EFaturaWebSocket.jnlp ~/Desktop/eBeyanname
-sudo cp -R /opt/ebyn/download/KamuSMMaliMuhurUygulamasi.jnlp ~/Desktop/eBeyanname
-sudo ln -fs /opt/ebyn/download/libakisp11.dylib /Library/Java/Extensions;
-
-sudo cp -R ~/Downloads/eBynMac-main/bdpGuncelleme.command ~/Desktop/eBeyanname
+sudo cp -R ~/Downloads/eBynMac-main/assets/files/bdpGuncelleme.command ~/Desktop/eBeyanname
 sh ~/Desktop/eBeyanname/bdpGuncelleme.command
 
 cd /opt/ebyn/download
