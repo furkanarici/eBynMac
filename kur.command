@@ -41,6 +41,7 @@ open jdk-17_macos-aarch64_bin.dmg
 open jdk-7u80-macosx-x64.dmg
 open jre-8u321-macosx-x64.dmg
 
+sudo chown -R $(whoami) /opt/ebyn
 open ~/Desktop/eBeyanname
 
 
