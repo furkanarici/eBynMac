@@ -1,4 +1,4 @@
-sudo mkdir ~/Desktop/eBeyanname/
+sudo mkdir ~/Desktop/eBeyanname
 sudo chown -R $(whoami) ~/Desktop/eBeyanname
 
 sudo mkdir /opt/ebyn 

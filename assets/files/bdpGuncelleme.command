@@ -27,3 +27,4 @@ sudo curl -O https://furkanarici.com/Tools/img/bdp_bg.jpg
 sudo rm -R /opt/ebyn/download
 mkdir /opt/ebyn/download
 
+sudo chown -R $(whoami) /opt/ebyn
