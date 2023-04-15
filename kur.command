@@ -45,5 +45,4 @@ open jre-8u321-macosx-x64.dmg
 sudo chown -R $(whoami) /opt/ebyn
 open ~/Desktop/eBeyanname
 
-// luca LucaProxyKopyala dosyasını çalıştırılabilir hale getirmek için 
 cd ~/Downloads && chmod +x LucaProxyKopyala.command

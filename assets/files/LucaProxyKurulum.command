@@ -10,3 +10,6 @@ cd ~/Downloads && bash LucaProxyKurulumMac.sh
 
 # yükleme tamamlandıktan sonra LucaProxyKurulumMac.sh dosyasını sil
 cd ~/Downloads && rm LucaProxyKurulumMac.sh
+
+open ~/LucaProxy
+ln -s ~/LucaProxy/LucaProxy.jar ~/Desktop/LucaProxy
