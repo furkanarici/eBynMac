@@ -44,4 +44,7 @@ open jre-8u321-macosx-x64.dmg
 sudo chown -R $(whoami) /opt/ebyn
 open ~/Desktop/eBeyanname
 
-chmod +x ~/Desktop/eBeyanname/LucaProxyKurulum.command
+sudo chmod +x ~/Desktop/eBeyanname/LucaProxyKurulum.command
+sudo chmod +x ~/Desktop/eBeyanname/bdp.command
+sudo chmod +x ~/Desktop/eBeyanname/bdpGuncelleme.command
+sudo chmod +x ~/Desktop/eBeyanname/paketler.command
