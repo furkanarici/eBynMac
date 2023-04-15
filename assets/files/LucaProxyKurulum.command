@@ -1,9 +1,10 @@
 #!/bin/bash
 
-cd ~/Downloads && rm LucaProxyKurulumMac.sh
+rm ~/Downloads/LucaProxyKurulumMac.sh
+rm -rf ~/LucaProxy/*
 
 # LucaProxyKurulumMac.sh dosyasını indir
-curl -O https://auygs.luca.com.tr/Luca/yardim/uygulamalar/LucaProxyKurulumMac.sh
+cd ~/Downloads && curl -O https://auygs.luca.com.tr/Luca/yardim/uygulamalar/LucaProxyKurulumMac.sh
 
 # indirme tamamlandığında downloads klasörüne git ve dosyayı çalıştır
 bash ~/Downloads/LucaProxyKurulumMac.sh
