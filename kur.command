@@ -8,6 +8,7 @@ sudo chown -R $(whoami) /opt/ebyn
 
 sudo cp -R ~/Downloads/eBynMac-main/assets/files/bdp.command ~/Desktop/eBeyanname
 sudo cp -R ~/Downloads/eBynMac-main/assets/files/paketler.command ~/Desktop/eBeyanname
+sudo cp -R ~/Downloads/eBynMac-main/assets/files/LucaProxyKurulum.command ~/Desktop/eBeyanname
 sudo cp -R ~/Downloads/eBynMac-main/assets/files/bdp.sh /opt/ebyn/update
 
 sudo cp -R ~/Downloads/eBynMac-main/assets/files/EFaturaWebSocket.jnlp ~/Desktop/eBeyanname
@@ -44,6 +45,5 @@ open jre-8u321-macosx-x64.dmg
 sudo chown -R $(whoami) /opt/ebyn
 open ~/Desktop/eBeyanname
 
-
-
-
+// luca LucaProxyKopyala dosyasını çalıştırılabilir hale getirmek için 
+cd ~/Downloads && chmod +x LucaProxyKopyala.command
