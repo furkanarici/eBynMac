@@ -6,10 +6,7 @@ cd ~/Downloads && rm LucaProxyKurulumMac.sh
 curl -O https://auygs.luca.com.tr/Luca/yardim/uygulamalar/LucaProxyKurulumMac.sh
 
 # indirme tamamlandığında downloads klasörüne git ve dosyayı çalıştır
-cd ~/Downloads && bash LucaProxyKurulumMac.sh
-
-# yükleme tamamlandıktan sonra LucaProxyKurulumMac.sh dosyasını sil
-cd ~/Downloads && rm LucaProxyKurulumMac.sh
+bash ~/Downloads/LucaProxyKurulumMac.sh
 
 open ~/LucaProxy
 ln -s ~/LucaProxy/LucaProxy.jar ~/Desktop/LucaProxy
