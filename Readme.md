@@ -1,8 +1,7 @@
 ## eBeyanname Mac versiyon kurulumu Mali Mühür Ayarları
 
-- kuruluma başlamadan önce bu linkteki programları indirip kurun. daha sonra aşağıdaki adımları tamamlayın.
-
-[Java İndir](https://drive.google.com/u/0/uc?id=1wPutXX40gJJevRRwnOuL2blzJt9e0dRx&export=download&confirm=t)
+- kuruluma başlamadan önce
+  [bu Linkteki](https://drive.google.com/u/0/uc?id=1wPutXX40gJJevRRwnOuL2blzJt9e0dRx&export=download&confirm=t)programları indirip kurun. daha sonra aşağıdaki adımları tamamlayın.
 
 [Programı inddirmek için buraya tıklayın](https://github.com/furkanarici/eBynMac/archive/refs/heads/main.zip)
 
