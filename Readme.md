@@ -1,5 +1,9 @@
 ## eBeyanname Mac versiyon kurulumu Mali Mühür Ayarları
 
+- kuruluma başlamadan önce bu linkteki programları indirip kurun. daha sonra aşağıdaki adımları tamamlayın.
+
+[Java İndir](https://drive.google.com/u/0/uc?id=1wPutXX40gJJevRRwnOuL2blzJt9e0dRx&export=download&confirm=t)
+
 [Programı inddirmek için buraya tıklayın](https://github.com/furkanarici/eBynMac/archive/refs/heads/main.zip)
 
 Gelir İdaresi Başkanlığına e-Beyannamelerin verilmesi için xml formatında beyannamelerin hazırlandığı programın Apple Mac bilgisayarlarda çalışması için gerekli kurulumların yapılması için hazırladığım komut dosyalarını içerir.
@@ -7,10 +11,6 @@ Gelir İdaresi Başkanlığına e-Beyannamelerin verilmesi için xml formatında
 Ayrıca mac bilgisayarlarda mali mühürün çalışması için ilgili kurulumları yapar.
 
 Kurulum Adımları
-
-- kuruluma başlamadan önce bu linkteki programları indirip kurun. daha sonra aşağıdaki adımları tamamlayın.
-
-[Java İndir](https://drive.google.com/u/0/uc?id=1wPutXX40gJJevRRwnOuL2blzJt9e0dRx&export=download&confirm=t)
 
 - zip dosyayı indirin
 - kur.command dosyasını çalıştırın
