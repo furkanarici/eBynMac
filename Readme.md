@@ -1,37 +1,63 @@
-## eBeyanname Mac versiyon kurulumu Mali Mühür Ayarları
+# 📱 eBeyanname Mac Kurulum Rehberi
 
-- kuruluma başlamadan önce
-  [bu Linkteki](https://drive.google.com/u/0/uc?id=1wPutXX40gJJevRRwnOuL2blzJt9e0dRx&export=download&confirm=t) programları indirip kurun. daha sonra aşağıdaki adımları tamamlayın.
+<div class="bg-blue-50 p-6 rounded-lg shadow-md mb-8">
+  <h2 class="text-2xl font-bold text-blue-800 mb-4">🎯 Ön Gereksinimler</h2>
+  <p class="text-gray-700 mb-4">Başlamadan önce Java kurulumunu tamamlamanız gerekiyor.</p>
+  <a href="https://drive.google.com/file/d/1j8XvOc1H2TfAsq1VdLOamdxQ_AdR-6pN/view?usp=drive_link" class="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+    Java Kurulum Dosyasını İndir
+  </a>
+</div>
 
-[Programı inddirmek için buraya tıklayın](https://github.com/furkanarici/eBynMac/archive/refs/heads/main.zip)
+<div class="bg-green-50 p-6 rounded-lg shadow-md mb-8">
+  <h2 class="text-2xl font-bold text-green-800 mb-4">📦 Program İndirme</h2>
+  <a href="https://github.com/furkanarici/eBynMac/archive/refs/heads/main.zip" class="inline-block bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors">
+    eBeyanname Programını İndir
+  </a>
+</div>
 
-Gelir İdaresi Başkanlığına e-Beyannamelerin verilmesi için xml formatında beyannamelerin hazırlandığı programın Apple Mac bilgisayarlarda çalışması için gerekli kurulumların yapılması için hazırladığım komut dosyalarını içerir.
+## 📝 Program Hakkında
 
-Ayrıca mac bilgisayarlarda mali mühürün çalışması için ilgili kurulumları yapar.
+Bu program, Gelir İdaresi Başkanlığı'na e-Beyannamelerin verilmesi için XML formatında beyannamelerin hazırlandığı ve Apple Mac bilgisayarlarda çalışması için gerekli kurulumları içerir. Ayrıca Mac bilgisayarlarda mali mühürün çalışması için gerekli tüm ayarları otomatik olarak yapar.
 
-Kurulum Adımları
+## 🚀 Kurulum Adımları
 
-- zip dosyayı indirin
-- kur.command dosyasını çalıştırın
-- aşağıdaki pencere gelecek ve komut dosyasının güvenlik nedeniyle çalışmadığı belirtilecek. Tamam'a basın.
-  <img src="assets/1.png" width="250">
-- Sistem tercihlerinden genel sekmesinde sağ alttaki Yine de aç butonunu tıklayın
-  <img src="assets/2.png" width="250">
-- Açılan pencerede aç butonunu tıklayın
-  <img src="assets/3.png" width="250">
-- Terminal açıldığında sizden bilgisayarınızı açarken kullandığınız şifreyi isteyecek girip enter'a basın. (şifreyi girerken yazmıyormuş hissine kapılabilirsiniz. ekranda bir değişiklik olmasa da doğru şifreyi girip enter'a basın.)
-  <img src="assets/4.png" width="250">
-- İnternetten gerekli programları indirecek ve yükleme programlarını açacak.
-- Açılan Java yükleme programlarını teker teker çalıştırın kurulumların tamamlanmasını bekleyin.
-- İşlemler bittiğinde aşadğaki gibi masa üstünüzde eBeyanname adında bir klasör oluşacak
-  <img src="assets/8.png" width="250">
-- Kalsör içindeki hiçbir şeyi silmeyin. e-Beyanname programına girmek için bdp.command dosyasını çalıştırın. Güvenlik nedeniyle açılmadığı mesajı alırsanız 3. ve 4. adımda olduğu gibi güvenlik ve gizlilik ekranında yine de aç diyerek ilerleyin.
-  <img src="assets/9.png" width="250">
+1. **İndirme ve Başlangıç**
 
-### Güncelleme
+   - Zip dosyasını indirin
+   - `kur.command` dosyasını çalıştırın
 
-- e beyanname yazılımının güncellenmesi gerektiği zaman yine massa üstündeki eBeyanname klasörünü açın. bdpGuncelleme.command dosyasını çalıştırn.
-- Açılan pencerede alttaki örnekte oldğu gibi soru sorulursa "y" tuşuna basıp "enter" a basın. Bu işlemi birkaç kez isteyebilir.
-  <img src="assets/10.png" width="250">
+2. **Güvenlik Ayarları**
 
-kolay gelsin.
+   - Güvenlik uyarısı geldiğinde "Tamam"a tıklayın
+   - Sistem Tercihleri > Genel > "Yine de Aç" butonuna tıklayın
+   - Açılan pencerede "Aç" butonuna tıklayın
+
+3. **Kurulum**
+
+   - Terminal açıldığında bilgisayar şifrenizi girin (şifre görünmeyecektir)
+   - Gerekli programlar otomatik olarak indirilecek
+   - Java kurulum programlarını sırayla çalıştırın
+
+4. **Kurulum Tamamlandı**
+   - Masaüstünde "eBeyanname" klasörü oluşacak
+   - Programı başlatmak için `bdp.command` dosyasını çalıştırın
+
+## 🔄 Güncelleme
+
+Programı güncellemek için:
+
+1. Masaüstündeki "eBeyanname" klasörünü açın
+2. `bdpGuncelleme.command` dosyasını çalıştırın
+3. Güncelleme onayı istendiğinde "y" yazıp Enter'a basın
+
+## ⚠️ Önemli Notlar
+
+- Kurulum klasöründeki hiçbir dosyayı silmeyin
+- Güvenlik uyarılarında "Yine de Aç" seçeneğini kullanın
+- Şifre girerken görünmese de doğru şifreyi girin
+
+---
+
+<div class="text-center text-gray-600 mt-8">
+  <p>Kolay Gelsin! 🚀</p>
+</div>
