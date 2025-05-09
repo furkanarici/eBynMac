@@ -3,7 +3,7 @@
 <div class="bg-blue-50 p-6 rounded-lg shadow-md mb-8">
   <h2 class="text-2xl font-bold text-blue-800 mb-4">🎯 Ön Gereksinimler</h2>
   <p class="text-gray-700 mb-4">Başlamadan önce Java kurulumunu tamamlamanız gerekiyor.</p>
-  <a href="https://drive.google.com/file/d/1j8XvOc1H2TfAsq1VdLOamdxQ_AdR-6pN/view?usp=drive_link" class="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+  <a href="https://drive.google.com/uc?export=download&id=1j8XvOc1H2TfAsq1VdLOamdxQ_AdR-6pN" class="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
     Java Kurulum Dosyasını İndir
   </a>
 </div>
