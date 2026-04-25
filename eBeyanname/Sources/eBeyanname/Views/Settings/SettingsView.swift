@@ -98,6 +98,19 @@ struct SettingsView: View {
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: 300)
+
+            Button {
+                NSWorkspace.shared.open(URL(string: "https://aposkal.com")!)
+            } label: {
+                Text("aposkal.com")
+                    .font(.callout)
+            }
+            .buttonStyle(.plain)
+            .foregroundStyle(.accentColor)
+
+            Text("© 2026 Aposkal")
+                .font(.caption2)
+                .foregroundStyle(.tertiary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }

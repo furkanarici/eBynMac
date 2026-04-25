@@ -40,6 +40,15 @@ struct WelcomeStepView: View {
             .buttonStyle(.borderedProminent)
             .controlSize(.large)
 
+            Button {
+                NSWorkspace.shared.open(URL(string: "https://aposkal.com")!)
+            } label: {
+                Text("aposkal.com tarafından geliştirilmiştir")
+                    .font(.caption)
+            }
+            .buttonStyle(.plain)
+            .foregroundStyle(.secondary)
+
             Spacer()
         }
         .padding(40)
