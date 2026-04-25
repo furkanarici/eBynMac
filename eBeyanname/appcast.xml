@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+    <channel>
+        <title>eBeyanname Güncellemeleri</title>
+        <link>https://github.com/furkanarici/eBynMac/releases</link>
+        <description>eBeyanname macOS uygulaması için güncelleme akışı</description>
+        <language>tr</language>
+
+        <item>
+            <title>eBeyanname 1.0.0</title>
+            <sparkle:version>1</sparkle:version>
+            <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h3>İlk Sürüm</h3>
+                <ul>
+                    <li>Adım adım kurulum sihirbazı</li>
+                    <li>Tek tıkla eBeyanname başlatma</li>
+                    <li>Luca Proxy opsiyonel kurulumu</li>
+                    <li>Otomatik güncelleme desteği</li>
+                </ul>
+            ]]></description>
+            <pubDate>Fri, 25 Apr 2025 00:00:00 +0000</pubDate>
+            <enclosure
+                url="https://github.com/furkanarici/eBynMac/releases/download/v1.0.0/eBeyanname-1.0.0.dmg"
+                sparkle:edSignature="REPLACE_WITH_GENERATED_SIGNATURE"
+                length="0"
+                type="application/octet-stream"/>
+        </item>
+    </channel>
+</rss>

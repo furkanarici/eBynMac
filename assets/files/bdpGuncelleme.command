@@ -10,7 +10,6 @@ sudo chown -R $(whoami) ~/Desktop/eBeyanname
 
 cd /opt/ebyn/download
 
-curl -O https://dijital.gib.gov.tr/gerekliProgramlar#:~:text=ebyn_pardus.tar.gz
 curl -O https://ebeyanname.gib.gov.tr/ebyn_pardus.tar.gz
 mkdir /opt/ebyn/download/ebyn_pardus
 cd /opt/ebyn/download/ebyn_pardus
