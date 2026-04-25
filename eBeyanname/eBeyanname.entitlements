@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Required for downloading files from GİB and update servers -->
+    <key>com.apple.security.network.client</key>
+    <true/>
+
+    <!-- Hardened runtime: allow execution of JARs and spawning Java process -->
+    <key>com.apple.security.cs.allow-jit</key>
+    <false/>
+    <key>com.apple.security.cs.disable-library-validation</key>
+    <true/>
+
+    <!-- Allow running child processes (Java) -->
+    <key>com.apple.security.cs.allow-unsigned-executable-memory</key>
+    <false/>
+
+    <!-- AppleScript for privileged operations -->
+    <key>com.apple.security.automation.apple-events</key>
+    <true/>
+
+    <!-- Read/write access to user-selected and app-specific paths -->
+    <key>com.apple.security.files.user-selected.read-write</key>
+    <true/>
+    <key>com.apple.security.temporary-exception.files.absolute-path.read-write</key>
+    <array>
+        <string>/opt/ebyn/</string>
+        <string>/Library/Java/Extensions/</string>
+    </array>
+</dict>
+</plist>
