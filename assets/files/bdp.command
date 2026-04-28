@@ -1,5 +1,5 @@
 cd /opt/ebyn;
-JAVA_VERSION=$(/usr/libexec/java_home 2>/dev/null && java -version 2>&1 | grep -i version | cut -d'"' -f2 | cut -d'.' -f1)
+JAVA_VERSION=$(java -version 2>&1 | grep -i version | cut -d'"' -f2 | awk -F'.' '{if ($1 == "1") print $2; else print $1}')
 
 # Initialize JAVA_OPTS as empty
 JAVA_OPTS=""
