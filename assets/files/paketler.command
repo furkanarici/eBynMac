@@ -1,1 +1,0 @@
-open /opt/ebyn/paketler

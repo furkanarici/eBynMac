@@ -1,63 +1,53 @@
-# 📱 eBeyanname Mac Kurulum Rehberi
+# eBeyanname
 
-<div class="bg-blue-50 p-6 rounded-lg shadow-md mb-8">
-  <h2 class="text-2xl font-bold text-blue-800 mb-4">🎯 Ön Gereksinimler</h2>
-  <p class="text-gray-700 mb-4">Başlamadan önce Java kurulumunu tamamlamanız gerekiyor.</p>
-  <a href="https://drive.google.com/uc?export=download&id=1j8XvOc1H2TfAsq1VdLOamdxQ_AdR-6pN" class="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-    Java Kurulum Dosyasını İndir
-  </a>
-</div>
+macOS uygulaması — Gelir İdaresi Başkanlığı eBeyanname (BDP) programını Mac'te kolayca kurun ve çalıştırın.
 
-<div class="bg-green-50 p-6 rounded-lg shadow-md mb-8">
-  <h2 class="text-2xl font-bold text-green-800 mb-4">📦 Program İndirme</h2>
-  <a href="https://github.com/furkanarici/eBynMac/archive/refs/heads/main.zip" class="inline-block bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors">
-    eBeyanname Programını İndir
-  </a>
-</div>
+## Gereksinimler
 
-## 📝 Program Hakkında
+- macOS 13 Ventura veya üzeri
+- Apple Silicon veya Intel Mac
 
-Bu program, Gelir İdaresi Başkanlığı'na e-Beyannamelerin verilmesi için XML formatında beyannamelerin hazırlandığı ve Apple Mac bilgisayarlarda çalışması için gerekli kurulumları içerir. Ayrıca Mac bilgisayarlarda mali mühürün çalışması için gerekli tüm ayarları otomatik olarak yapar.
+## Kurulum
 
-## 🚀 Kurulum Adımları
+1. [Releases](https://github.com/furkanarici/eBynMac/releases) sayfasından son DMG dosyasını indirin
+2. DMG'yi açın ve uygulamayı Applications klasörüne sürükleyin
+3. Uygulamayı başlatın — kurulum sihirbazı gerekli bileşenleri adım adım yükler
 
-1. **İndirme ve Başlangıç**
+Uygulama şunları yönetir:
+- Java (GİB gereksinimi)
+- Akia PKCS#11 sürücüsü (mali mühür — isteğe bağlı)
+- BDP uygulama dosyaları (GİB sunucusundan indirilir)
+- Luca Proxy (isteğe bağlı)
 
-   - Zip dosyasını indirin
-   - `kur.command` dosyasını çalıştırın
+## Geliştirme
 
-2. **Güvenlik Ayarları**
+### Gereksinimler
 
-   - Güvenlik uyarısı geldiğinde "Tamam"a tıklayın
-   - Sistem Tercihleri > Genel > "Yine de Aç" butonuna tıklayın
-   - Açılan pencerede "Aç" butonuna tıklayın
+- Xcode 15+
+- Swift 5.9+
 
-3. **Kurulum**
+### Yerel derleme ve çalıştırma
 
-   - Terminal açıldığında bilgisayar şifrenizi girin (şifre görünmeyecektir)
-   - Gerekli programlar otomatik olarak indirilecek
-   - Java kurulum programlarını sırayla çalıştırın
+```bash
+make dev
+```
 
-4. **Kurulum Tamamlandı**
-   - Masaüstünde "eBeyanname" klasörü oluşacak
-   - Programı başlatmak için `bdp.command` dosyasını çalıştırın
+Bu komut uygulamayı derler, `.app` paketini oluşturur ve doğrudan açar.
 
-## 🔄 Güncelleme
+### Diğer komutlar
 
-Programı güncellemek için:
+```bash
+make build      # Release derlemesi (universal binary)
+make sign       # Developer ID ile imzalama
+make notarize   # Apple notarizasyonu
+make dmg        # Dağıtım DMG'si oluşturma
+make release    # Tam pipeline: build → sign → notarize → dmg
+```
 
-1. Masaüstündeki "eBeyanname" klasörünü açın
-2. `bdpGuncelleme.command` dosyasını çalıştırın
-3. Güncelleme onayı istendiğinde "y" yazıp Enter'a basın
+## Güncelleme
 
-## ⚠️ Önemli Notlar
-
-- Kurulum klasöründeki hiçbir dosyayı silmeyin
-- Güvenlik uyarılarında "Yine de Aç" seçeneğini kullanın
-- Şifre girerken görünmese de doğru şifreyi girin
+Uygulama Sparkle aracılığıyla kendini otomatik günceller. BDP dosyaları için uygulama içindeki "Güncellemeler" butonunu kullanın.
 
 ---
 
-<div class="text-center text-gray-600 mt-8">
-  <p>Kolay Gelsin! 🚀</p>
-</div>
+© 2026 [furkanarici.com](https://furkanarici.com)
