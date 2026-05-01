@@ -13,7 +13,7 @@ struct StepContainerView<Content: View>: View {
             VStack(spacing: 8) {
                 Image(systemName: systemImage)
                     .font(.system(size: 40))
-                    .foregroundStyle(.accentColor)
+                    .foregroundStyle(Color.accentColor)
 
                 Text(title)
                     .font(.title2)

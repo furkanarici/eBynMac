@@ -6,6 +6,7 @@ struct SettingsView: View {
     let updater: SPUUpdater
     @State private var isUpdatingBDP = false
     @State private var updateMessage: String?
+    @StateObject private var checkForUpdatesViewModel = CheckForUpdatesViewModel()
 
     var body: some View {
         TabView {
@@ -20,6 +21,7 @@ struct SettingsView: View {
         }
         .padding(20)
         .frame(width: 460, height: 320)
+        .onAppear { checkForUpdatesViewModel.bind(to: updater) }
     }
 
     // MARK: - Tabs
@@ -33,9 +35,10 @@ struct SettingsView: View {
                            set: { updater.automaticallyChecksForUpdates = $0 }
                        ))
 
-                Button("Şimdi Kontrol Et") {
+                Button("Güncellemeleri Kontrol Et") {
                     updater.checkForUpdates()
                 }
+                .disabled(!checkForUpdatesViewModel.canCheckForUpdates)
             }
 
             Section("eBeyanname (BDP) Güncellemesi") {
@@ -83,7 +86,7 @@ struct SettingsView: View {
         VStack(spacing: 16) {
             Image(systemName: "doc.text.fill")
                 .font(.system(size: 48))
-                .foregroundStyle(.accentColor)
+                .foregroundStyle(Color.accentColor)
 
             VStack(spacing: 4) {
                 Text("eBeyanname")
@@ -100,15 +103,15 @@ struct SettingsView: View {
                 .frame(maxWidth: 300)
 
             Button {
-                NSWorkspace.shared.open(URL(string: "https://aposkal.com")!)
+                NSWorkspace.shared.open(URL(string: "https://furkanarici.com")!)
             } label: {
-                Text("aposkal.com")
+                Text("furkanarici.com")
                     .font(.callout)
             }
             .buttonStyle(.plain)
-            .foregroundStyle(.accentColor)
+            .foregroundStyle(Color.accentColor)
 
-            Text("© 2026 Aposkal")
+            Text("© 2026 furkanarici")
                 .font(.caption2)
                 .foregroundStyle(.tertiary)
         }

@@ -18,6 +18,16 @@ let package = Package(
             path: "Sources/eBeyanname",
             resources: [
                 .process("Resources")
+            ],
+            linkerSettings: [
+                // Embeds Info.plist into the binary so NSBundle/CFBundle
+                // and Sparkle can read CFBundleIdentifier, CFBundleVersion, etc.
+                .unsafeFlags([
+                    "-Xlinker", "-sectcreate",
+                    "-Xlinker", "__TEXT",
+                    "-Xlinker", "__info_plist",
+                    "-Xlinker", "Sources/eBeyanname/Info.plist"
+                ])
             ]
         )
     ]

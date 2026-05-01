@@ -21,7 +21,7 @@
     <key>LSMinimumSystemVersion</key>
     <string>13.0</string>
     <key>NSHumanReadableCopyright</key>
-    <string>Copyright © 2026 Aposkal. All rights reserved.</string>
+    <string>Copyright © 2026 furkanarici. All rights reserved.</string>
     <key>NSPrincipalClass</key>
     <string>NSApplication</string>
     <key>LSApplicationCategoryType</key>
@@ -38,6 +38,35 @@
     <!-- Network access description -->
     <key>NSNetworkVolumesUsageDescription</key>
     <string>eBeyanname, program güncellemelerini indirmek için ağa erişim gerektirir.</string>
+
+    <!-- ATS exceptions for GİB and TÜBİTAK servers which use non-standard TLS configs -->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>ebeyanname.gib.gov.tr</key>
+            <dict>
+                <key>NSExceptionMinimumTLSVersion</key>
+                <string>TLSv1.0</string>
+                <key>NSExceptionRequiresForwardSecrecy</key>
+                <false/>
+            </dict>
+            <key>kamusm.bilgem.tubitak.gov.tr</key>
+            <dict>
+                <key>NSExceptionMinimumTLSVersion</key>
+                <string>TLSv1.0</string>
+                <key>NSExceptionRequiresForwardSecrecy</key>
+                <false/>
+            </dict>
+            <key>auygs.luca.com.tr</key>
+            <dict>
+                <key>NSExceptionMinimumTLSVersion</key>
+                <string>TLSv1.0</string>
+                <key>NSExceptionRequiresForwardSecrecy</key>
+                <false/>
+            </dict>
+        </dict>
+    </dict>
 
     <!-- App is agent (no Dock icon while BDP is not running) -->
     <key>LSUIElement</key>

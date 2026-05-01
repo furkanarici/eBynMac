@@ -1,8 +1,15 @@
 import Foundation
 import Combine
+import Sparkle
 
 @MainActor
 final class AppState: ObservableObject {
+
+    // MARK: - Updater
+
+    let updaterController: SPUStandardUpdaterController
+
+
     // MARK: - Setup state
 
     @Published var isSetupComplete: Bool
@@ -25,6 +32,13 @@ final class AppState: ObservableObject {
 
     init() {
         self.isSetupComplete = UserDefaults.standard.bool(forKey: Self.setupCompleteKey)
+        #if DEBUG || DEVELOPMENT
+        self.updaterController = SPUStandardUpdaterController(
+            startingUpdater: false, updaterDelegate: nil, userDriverDelegate: nil)
+        #else
+        self.updaterController = SPUStandardUpdaterController(
+            startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil)
+        #endif
     }
 
     func markSetupComplete() {

@@ -25,7 +25,31 @@ TEAM_ID        ?= REPLACE_WITH_TEAM_ID
 SIGNING_CERT   ?= Developer ID Application: $(TEAM_ID)
 NOTARY_PROFILE ?= ebeyanname-notary
 
-.PHONY: build sign notarize staple dmg release clean
+.PHONY: dev build sign notarize staple dmg release clean
+
+# Dev: build + assemble .app bundle + ad-hoc sign (no Developer account needed)
+dev:
+	swift build -c release -Xswiftc -DDEVELOPMENT
+	@echo "Assembling .app bundle..."
+	rm -rf $(BUILD_DIR)/$(APP_NAME).app
+	mkdir -p $(BUILD_DIR)/$(APP_NAME).app/Contents/MacOS
+	mkdir -p $(BUILD_DIR)/$(APP_NAME).app/Contents/Resources
+	mkdir -p $(BUILD_DIR)/$(APP_NAME).app/Contents/Frameworks
+	cp $(BUILD_DIR)/$(APP_NAME) $(BUILD_DIR)/$(APP_NAME).app/Contents/MacOS/
+	install_name_tool -add_rpath @executable_path/../Frameworks \
+		$(BUILD_DIR)/$(APP_NAME).app/Contents/MacOS/$(APP_NAME)
+	cp Sources/$(APP_NAME)/Info.plist $(BUILD_DIR)/$(APP_NAME).app/Contents/
+	printf 'APPL????' > $(BUILD_DIR)/$(APP_NAME).app/Contents/PkgInfo
+	@# Copy Sparkle.framework
+	cp -R $(BUILD_DIR)/Sparkle.framework $(BUILD_DIR)/$(APP_NAME).app/Contents/Frameworks/
+	@# Copy SPM resource bundle if it exists
+	@if [ -d "$(BUILD_DIR)/$(APP_NAME)_$(APP_NAME).bundle" ]; then \
+		cp -R $(BUILD_DIR)/$(APP_NAME)_$(APP_NAME).bundle $(BUILD_DIR)/$(APP_NAME).app/Contents/Resources/; \
+	fi
+	@echo "Ad-hoc signing..."
+	codesign --sign - --force --deep --entitlements eBeyanname.entitlements $(BUILD_DIR)/$(APP_NAME).app
+	@echo "Done: $(BUILD_DIR)/$(APP_NAME).app"
+	open $(BUILD_DIR)/$(APP_NAME).app
 
 build:
 	swift build -c release --arch arm64 --arch x86_64

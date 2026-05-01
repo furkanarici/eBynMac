@@ -9,7 +9,7 @@ struct WelcomeStepView: View {
 
             Image(systemName: "doc.text.fill")
                 .font(.system(size: 64))
-                .foregroundStyle(.accentColor)
+                .foregroundStyle(Color.accentColor)
 
             VStack(spacing: 12) {
                 Text("eBeyanname'ye Hoş Geldiniz")
@@ -41,9 +41,9 @@ struct WelcomeStepView: View {
             .controlSize(.large)
 
             Button {
-                NSWorkspace.shared.open(URL(string: "https://aposkal.com")!)
+                NSWorkspace.shared.open(URL(string: "https://furkanarici.com")!)
             } label: {
-                Text("aposkal.com tarafından geliştirilmiştir")
+                Text("furkanarici.com tarafından geliştirilmiştir")
                     .font(.caption)
             }
             .buttonStyle(.plain)
@@ -62,7 +62,7 @@ private struct FeatureRow: View {
     var body: some View {
         HStack(spacing: 12) {
             Image(systemName: icon)
-                .foregroundStyle(.accentColor)
+                .foregroundStyle(Color.accentColor)
                 .frame(width: 24)
             Text(text)
                 .font(.callout)

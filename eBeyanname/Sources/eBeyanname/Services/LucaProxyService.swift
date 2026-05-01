@@ -1,4 +1,5 @@
 import Foundation
+import AppKit
 
 enum LucaProxyError: LocalizedError {
     case scriptDownloadFailed

@@ -9,7 +9,7 @@ struct AkiaStepView: View {
     var body: some View {
         StepContainerView(
             title: "Akia Akıllı Kart Sürücüsü",
-            subtitle: "Mali mühürün çalışması için Akia sürücüsü gereklidir.",
+            subtitle: "Mali mühür kullanıyorsanız Akia sürücüsünü kurabilirsiniz. Bu adım isteğe bağlıdır.",
             systemImage: "creditcard.fill"
         ) {
             switch appState.akiaStatus {
@@ -35,12 +35,17 @@ struct AkiaStepView: View {
                     StatusBanner(
                         icon: "exclamationmark.circle.fill",
                         color: .orange,
-                        title: "Akia Sürücüsü Gerekli",
+                        title: "Akia Sürücüsü Kurulu Değil",
                         message: "PKCS#11 kütüphanesi kurulacak ve tam sürücü indirilecek."
                     )
-                    Button("Akia Sürücüsünü Kur") { installAkia() }
-                        .buttonStyle(.borderedProminent)
-                        .controlSize(.large)
+                    HStack(spacing: 16) {
+                        Button("Akia Sürücüsünü Kur") { installAkia() }
+                            .buttonStyle(.borderedProminent)
+                            .controlSize(.large)
+                        Button("Atla") { withAnimation { appState.currentSetupStep = .bdp } }
+                            .buttonStyle(.bordered)
+                            .controlSize(.large)
+                    }
                 }
 
             case .installing:
@@ -59,8 +64,12 @@ struct AkiaStepView: View {
             case .failed(let msg):
                 VStack(spacing: 12) {
                     StatusBanner(icon: "xmark.circle.fill", color: .red, title: "Hata", message: msg)
-                    Button("Tekrar Dene") { installAkia() }
-                        .buttonStyle(.borderedProminent)
+                    HStack(spacing: 16) {
+                        Button("Tekrar Dene") { installAkia() }
+                            .buttonStyle(.borderedProminent)
+                        Button("Atla") { withAnimation { appState.currentSetupStep = .bdp } }
+                            .buttonStyle(.bordered)
+                    }
                 }
             }
 

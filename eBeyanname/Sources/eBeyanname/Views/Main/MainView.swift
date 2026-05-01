@@ -3,6 +3,7 @@ import SwiftUI
 struct MainView: View {
     @EnvironmentObject var appState: AppState
     @State private var showConsole = false
+    @State private var showUpdates = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -10,21 +11,19 @@ struct MainView: View {
             HStack {
                 Image(systemName: "doc.text.fill")
                     .font(.title2)
-                    .foregroundStyle(.accentColor)
+                    .foregroundStyle(Color.accentColor)
                 Text("eBeyanname")
                     .font(.title2)
                     .fontWeight(.semibold)
                 Spacer()
 
-                if appState.bdpUpdateAvailable {
-                    Button {
-                        Task { await updateBDP() }
-                    } label: {
-                        Label("Güncelleme Var", systemImage: "arrow.clockwise.circle.fill")
-                            .foregroundStyle(.orange)
-                    }
-                    .buttonStyle(.bordered)
+                Button {
+                    showUpdates = true
+                } label: {
+                    Label("Güncellemeler", systemImage: "arrow.clockwise.circle")
+                        .font(.callout)
                 }
+                .buttonStyle(.bordered)
 
                 Button {
                     showConsole.toggle()
@@ -56,14 +55,12 @@ struct MainView: View {
 
             Divider()
 
-            // Main content
-            VStack(spacing: 28) {
+            // Launch section
+            VStack(spacing: 16) {
                 Spacer()
-
                 if appState.isBDPRunning {
                     VStack(spacing: 12) {
-                        ProgressView()
-                            .scaleEffect(0.8)
+                        ProgressView().scaleEffect(0.8)
                         Text("eBeyanname çalışıyor...")
                             .font(.callout)
                             .foregroundStyle(.secondary)
@@ -71,22 +68,20 @@ struct MainView: View {
                             .buttonStyle(.bordered)
                     }
                 } else {
-                    VStack(spacing: 16) {
-                        Button {
-                            launchBDP()
-                        } label: {
-                            Label("eBeyanname'yi Başlat", systemImage: "play.fill")
-                                .font(.title3)
-                                .frame(width: 240)
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .controlSize(.large)
-                        .disabled(!BDPService.shared.isInstalled || !JavaService.shared.isInstalled)
+                    Button {
+                        launchBDP()
+                    } label: {
+                        Label("eBeyanname'yi Başlat", systemImage: "play.fill")
+                            .font(.title3)
+                            .frame(width: 240)
                     }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
+                    .disabled(!BDPService.shared.isInstalled || !JavaService.shared.isInstalled)
                 }
-
                 Spacer()
             }
+            .frame(maxWidth: .infinity)
 
             // Console drawer
             if showConsole {
@@ -98,6 +93,10 @@ struct MainView: View {
         }
         .animation(.easeInOut(duration: 0.2), value: showConsole)
         .onAppear { refreshStatuses() }
+        .sheet(isPresented: $showUpdates) {
+            UpdatesView()
+                .environmentObject(appState)
+        }
     }
 
     private func launchBDP() {
@@ -114,19 +113,6 @@ struct MainView: View {
     private func stopBDP() {
         BDPService.shared.terminate()
         appState.isBDPRunning = false
-    }
-
-    private func updateBDP() async {
-        appState.bdpStatus = .downloading(0)
-        do {
-            try await BDPService.shared.download { progress in
-                Task { @MainActor in appState.bdpStatus = .downloading(progress) }
-            }
-            appState.bdpStatus = .installed
-            appState.bdpUpdateAvailable = false
-        } catch {
-            appState.bdpStatus = .failed(error.localizedDescription)
-        }
     }
 
     private func refreshStatuses() {
@@ -154,9 +140,9 @@ private struct StatusDot: View {
 
     private var dotColor: Color {
         switch status {
-        case .installed:  return .green
+        case .installed:             return .green
         case .notInstalled, .failed: return .red
-        default:          return .gray
+        default:                     return .gray
         }
     }
 }
@@ -175,7 +161,7 @@ private struct ConsoleView: View {
                     .id("bottom")
             }
             .background(Color(nsColor: .textBackgroundColor))
-            .onChange(of: output) { _, _ in
+            .onChange(of: output) { _ in
                 proxy.scrollTo("bottom", anchor: .bottom)
             }
         }
