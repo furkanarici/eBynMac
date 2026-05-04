@@ -41,11 +41,75 @@ struct MainView: View {
 
             // Status bar
             HStack(spacing: 24) {
-                StatusDot(label: "Java", status: appState.javaStatus)
-                StatusDot(label: "Akia", status: appState.akiaStatus)
-                StatusDot(label: "BDP", status: appState.bdpStatus)
+                StatusDot(label: "Java", status: appState.javaStatus) {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Java Kurulu Değil")
+                            .font(.caption.bold())
+                        Text("eBeyanname çalışmak için Java gerektirir.")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        Divider()
+                        Button("Java İndir") {
+                            NSWorkspace.shared.open(URL(string: "https://www.java.com/en/download/")!)
+                        }
+                        .buttonStyle(.link)
+                        Button("Tekrar Kontrol Et") {
+                            appState.javaStatus = .checking
+                            Task {
+                                try? await Task.sleep(nanoseconds: 300_000_000)
+                                await MainActor.run {
+                                    appState.javaStatus = JavaService.shared.isInstalled ? .installed : .notInstalled
+                                }
+                            }
+                        }
+                        .buttonStyle(.link)
+                    }
+                    .padding(8)
+                    .frame(width: 200)
+                }
+                StatusDot(label: "Akia", status: appState.akiaStatus) {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Akia Sürücüsü Kurulu Değil")
+                            .font(.caption.bold())
+                        Text("Mali mühür için PKCS#11 kütüphanesi gereklidir.")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        Divider()
+                        Button("Akia Sürücüsünü Kur") { installAkia() }
+                            .buttonStyle(.link)
+                    }
+                    .padding(8)
+                    .frame(width: 220)
+                }
+                StatusDot(label: "BDP", status: appState.bdpStatus) {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("eBeyanname Kurulu Değil")
+                            .font(.caption.bold())
+                        Text("GİB sunucusundan indirilecek.")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        Divider()
+                        Button("İndir ve Kur") { downloadBDP() }
+                            .buttonStyle(.link)
+                    }
+                    .padding(8)
+                    .frame(width: 200)
+                }
                 if appState.lucaProxyStatus != .unchecked {
-                    StatusDot(label: "Luca", status: appState.lucaProxyStatus)
+                    StatusDot(label: "Luca", status: appState.lucaProxyStatus) {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Luca Proxy Kurulu Değil")
+                                .font(.caption.bold())
+                            Text("Luca muhasebe programı için proxy kurulumu.")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                            Divider()
+                            Button("Luca Proxy Kur") { installLucaProxy() }
+                                .buttonStyle(.link)
+                        }
+                        .padding(8)
+                        .frame(width: 220)
+                    }
                 }
                 Spacer()
             }
@@ -82,6 +146,27 @@ struct MainView: View {
                 Spacer()
             }
             .frame(maxWidth: .infinity)
+
+            HStack {
+                Spacer()
+                Link(destination: URL(string: "https://furkanarici.com")!) {
+                    HStack(spacing: 4) {
+                        Image(systemName: "globe")
+                        Text("furkanarici.com")
+                    }
+                    .font(.caption)
+                    .foregroundStyle(Color.accentColor)
+                }
+                .onHover { hovering in
+                    if hovering {
+                        NSCursor.pointingHand.push()
+                    } else {
+                        NSCursor.pop()
+                    }
+                }
+            }
+            .padding(.horizontal, 24)
+            .padding(.bottom, 8)
 
             // Console drawer
             if showConsole {
@@ -121,11 +206,64 @@ struct MainView: View {
         appState.bdpStatus = BDPService.shared.isInstalled ? .installed : .notInstalled
         appState.lucaProxyStatus = LucaProxyService.shared.isInstalled ? .installed : .notInstalled
     }
+
+    private func installAkia() {
+        Task {
+            do {
+                await MainActor.run { appState.akiaStatus = .installing }
+                try AkiaService.shared.installLibrary()
+                await MainActor.run { appState.akiaStatus = .downloading(0) }
+                try await AkiaService.shared.installDriver { progress in
+                    Task { @MainActor in appState.akiaStatus = .downloading(progress) }
+                }
+                await MainActor.run { appState.akiaStatus = .installed }
+            } catch {
+                await MainActor.run { appState.akiaStatus = .failed(error.localizedDescription) }
+            }
+        }
+    }
+
+    private func downloadBDP() {
+        Task {
+            do {
+                await MainActor.run { appState.bdpStatus = .downloading(0) }
+                try await BDPService.shared.download { progress in
+                    Task { @MainActor in appState.bdpStatus = .downloading(progress) }
+                }
+                await MainActor.run { appState.bdpStatus = .installed }
+            } catch {
+                await MainActor.run { appState.bdpStatus = .failed(error.localizedDescription) }
+            }
+        }
+    }
+
+    private func installLucaProxy() {
+        Task {
+            do {
+                await MainActor.run { appState.lucaProxyStatus = .downloading(0) }
+                try await LucaProxyService.shared.install { progress in
+                    Task { @MainActor in appState.lucaProxyStatus = .downloading(progress) }
+                }
+                await MainActor.run { appState.lucaProxyStatus = .installed }
+            } catch {
+                await MainActor.run { appState.lucaProxyStatus = .failed(error.localizedDescription) }
+            }
+        }
+    }
 }
 
-private struct StatusDot: View {
+private struct StatusDot<PopoverContent: View>: View {
     let label: String
     let status: ComponentStatus
+    @ViewBuilder let popoverContent: () -> PopoverContent
+    @State private var showPopover = false
+
+    private var isActionable: Bool {
+        switch status {
+        case .notInstalled, .failed: return true
+        default: return false
+        }
+    }
 
     var body: some View {
         HStack(spacing: 4) {
@@ -135,6 +273,20 @@ private struct StatusDot: View {
             Text(label)
                 .font(.caption)
                 .foregroundStyle(.secondary)
+        }
+        .padding(.vertical, 4)
+        .padding(.horizontal, 8)
+        .contentShape(Rectangle())
+        .onTapGesture {
+            if isActionable { showPopover = true }
+        }
+        .onHover { hovering in
+            if isActionable {
+                if hovering { NSCursor.pointingHand.push() } else { NSCursor.pop() }
+            }
+        }
+        .popover(isPresented: $showPopover, arrowEdge: .bottom) {
+            popoverContent()
         }
     }
 

@@ -22,35 +22,14 @@ final class DownloadService {
         let tempURL = FileManager.default.temporaryDirectory
             .appendingPathComponent(UUID().uuidString + "-" + destName)
 
-        return try await withCheckedThrowingContinuation { continuation in
-            let session = URLSession(configuration: .default, delegate: nil, delegateQueue: nil)
-            let task = session.downloadTask(with: url) { localURL, _, error in
-                if let error {
-                    continuation.resume(throwing: error)
-                    return
-                }
-                guard let localURL else {
-                    continuation.resume(throwing: DownloadError.fileMoveError)
-                    return
-                }
-                do {
-                    try FileManager.default.moveItem(at: localURL, to: tempURL)
-                    continuation.resume(returning: tempURL)
-                } catch {
-                    continuation.resume(throwing: error)
-                }
-            }
+        let delegate = DownloadProgressDelegate(progress: progress)
+        let session = URLSession(configuration: .default, delegate: delegate, delegateQueue: nil)
+        defer { session.finishTasksAndInvalidate() }
 
-            // KVO progress tracking
-            let observation = task.progress.observe(\.fractionCompleted) { prog, _ in
-                progress(prog.fractionCompleted)
-            }
+        let (localURL, _) = try await session.download(from: url)
 
-            task.resume()
-
-            // Keep observation alive until task completes
-            withExtendedLifetime(observation) {}
-        }
+        try FileManager.default.moveItem(at: localURL, to: tempURL)
+        return tempURL
     }
 
     /// Extracts a .tar.gz archive into the given directory.
@@ -88,4 +67,22 @@ final class DownloadService {
             throw DownloadError.extractionFailed(process.terminationStatus)
         }
     }
+}
+
+private final class DownloadProgressDelegate: NSObject, URLSessionDownloadDelegate {
+    let progress: @Sendable (Double) -> Void
+
+    init(progress: @escaping @Sendable (Double) -> Void) {
+        self.progress = progress
+    }
+
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask,
+                    didWriteData bytesWritten: Int64, totalBytesWritten: Int64,
+                    totalBytesExpectedToWrite: Int64) {
+        guard totalBytesExpectedToWrite > 0 else { return }
+        progress(Double(totalBytesWritten) / Double(totalBytesExpectedToWrite))
+    }
+
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask,
+                    didFinishDownloadingTo location: URL) {}
 }

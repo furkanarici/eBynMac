@@ -13,7 +13,7 @@ let package = Package(
         .executableTarget(
             name: "eBeyanname",
             dependencies: [
-                .product(name: "Sparkle", package: "Sparkle")
+                .product(name: "Sparkle", package: "Sparkle", condition: .when(platforms: [.macOS]))
             ],
             path: "Sources/eBeyanname",
             resources: [

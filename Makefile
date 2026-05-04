@@ -25,7 +25,9 @@ TEAM_ID        ?= REPLACE_WITH_TEAM_ID
 SIGNING_CERT   ?= Developer ID Application: $(TEAM_ID)
 NOTARY_PROFILE ?= ebeyanname-notary
 
-.PHONY: dev build sign notarize staple dmg release clean
+VERSION        ?= 1.0.0
+
+.PHONY: dev build sign notarize staple dmg pkg release clean
 
 # Dev: build + assemble .app bundle + ad-hoc sign (no Developer account needed)
 dev:
@@ -39,6 +41,7 @@ dev:
 	install_name_tool -add_rpath @executable_path/../Frameworks \
 		$(BUILD_DIR)/$(APP_NAME).app/Contents/MacOS/$(APP_NAME)
 	cp Sources/$(APP_NAME)/Info.plist $(BUILD_DIR)/$(APP_NAME).app/Contents/
+	cp Sources/$(APP_NAME)/Resources/AppIcon.icns $(BUILD_DIR)/$(APP_NAME).app/Contents/Resources/
 	printf 'APPL????' > $(BUILD_DIR)/$(APP_NAME).app/Contents/PkgInfo
 	@# Copy Sparkle.framework
 	cp -R $(BUILD_DIR)/Sparkle.framework $(BUILD_DIR)/$(APP_NAME).app/Contents/Frameworks/
@@ -94,6 +97,23 @@ dmg: staple
 # Generate Sparkle EdDSA signature for the DMG
 sparkle-sign: dmg
 	sign_update "$(DIST_DIR)/$(DMG_NAME)"
+
+# Unsigned PKG installer (no Developer account needed)
+pkg: dev
+	mkdir -p $(DIST_DIR)
+	@echo "Creating PKG installer..."
+	@# Stage the .app into a pkg root
+	rm -rf /tmp/$(APP_NAME)-pkgroot
+	mkdir -p /tmp/$(APP_NAME)-pkgroot/Applications
+	cp -R $(APP_PATH) /tmp/$(APP_NAME)-pkgroot/Applications/
+	pkgbuild \
+		--root /tmp/$(APP_NAME)-pkgroot \
+		--identifier $(BUNDLE_ID) \
+		--version $(VERSION) \
+		--install-location / \
+		$(DIST_DIR)/$(APP_NAME)-$(VERSION)-unsigned.pkg
+	rm -rf /tmp/$(APP_NAME)-pkgroot
+	@echo "PKG created: $(DIST_DIR)/$(APP_NAME)-$(VERSION)-unsigned.pkg"
 
 release: build sign notarize staple dmg sparkle-sign
 	@echo "Release complete: $(DIST_DIR)/$(DMG_NAME)"
