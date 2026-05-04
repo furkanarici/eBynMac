@@ -28,7 +28,14 @@ final class JavaService {
     /// JVM flags required for the detected Java version.
     var javaOpts: [String] {
         guard let ver = version, ver >= 9 else { return [] }
-        return ["--add-opens", "java.desktop/java.beans=ALL-UNNAMED"]
+        return [
+            "--add-opens", "java.desktop/java.beans=ALL-UNNAMED",
+            "--add-opens", "java.xml/com.sun.org.apache.xerces.internal.dom=ALL-UNNAMED",
+            "--add-opens", "java.xml/com.sun.org.apache.xerces.internal.jaxp=ALL-UNNAMED",
+            "--add-opens", "java.xml/com.sun.org.apache.xml.internal.serialize=ALL-UNNAMED",
+            "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+            "--add-opens", "java.base/java.lang.reflect=ALL-UNNAMED",
+        ]
     }
 
     var executableURL: URL? {
